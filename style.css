@@ -1,0 +1,147 @@
+/* Variabile globale - Tema Light (Implicită) */
+:root {
+    --bg-color: #faf9f6; /* Alb cald, perlat */
+    --header-bg: #ffffff;
+    --text-color: #2c2c2c;
+    --accent-color: #d4af37; /* Auriu rafinat */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --border-color: #eaeaea;
+}
+
+/* Suprascrierea variabilelor pentru Tema Dark */
+body.dark-mode {
+    --bg-color: #0f0f11; /* Negru intens, misterios */
+    --header-bg: #1a1a1c;
+    --text-color: #f0f0f0;
+    --accent-color: #cda434; /* Auriu ajustat pentru contrast */
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --border-color: #2a2a2c;
+}
+
+/* Resetări de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Stilizare Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background-color: var(--header-bg);
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    letter-spacing: 1.5px;
+    font-family: 'Georgia', serif; /* Font cu serife pentru eleganță */
+    cursor: pointer;
+}
+
+/* Navigație */
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.05rem;
+    position: relative;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.navbar a:hover {
+    color: var(--accent-color);
+}
+
+/* Acțiuni (Căutare + Dark Mode) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 0.4rem 1rem;
+    background-color: var(--bg-color);
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    padding: 0.4rem;
+    width: 220px;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.search-btn i {
+    font-size: 18px;
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--border-color);
+}
