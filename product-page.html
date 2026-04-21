@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSL Libre Intense - Mystic Notes</title>
+    <link rel="stylesheet" href="product-style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a class="home_link" href="index.html">
+            <div class="logo"><h1>Mystic Notes</h1></div>
+        </a>
+        <div class="hamburger" id="hamburger">☰</div>
+        <nav class="nav" id="menu">
+            <ul>
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="index.html#catalog">Catalog</a></li>
+                <li><a href="despre.html">Despre noi</a></li>
+                <li><a href="Contact us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        <div class="gallery-thumbs">
+            <img src="imp/ysl 1.avif" class="thumb active" alt="YSL 1" onclick="changeImage(this)">
+            <img src="imp/ysl 2.avif" class="thumb" alt="YSL 2" onclick="changeImage(this)">
+            <img src="imp/ysl 3.avif" class="thumb" alt="YSL 3" onclick="changeImage(this)">
+            <img src="imp/ysl 4.avif" class="thumb" alt="YSL 4" onclick="changeImage(this)">
+        </div>
+
+        <div class="main-image-wrapper">
+            <img src="imp/ysl 01.avif" id="mainImage" class="main-image" alt="YSL Libre Intense">
+        </div>
+
+        <div class="details">
+            <div class="brand">Midnight Velvet</div>
+            <h1 class="title">Libre Intense</h1>
+            <div class="stars">★★★★★ <span class="review-count">(48 recenzii)</span></div>
+            
+            <div class="price-section">
+                <div class="price" id="pretAfisat">2700,00 Lei</div>
+                <div class="price-per-100ml" id="pret100ml">2500,00 Lei / 100ml</div>
+            </div>
+
+            <p class="description">
+                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea florii de portocal și aura mistică a orhideei sălbatice.
+            </p>
+
+            <div class="select-section">
+                <label for="cantitate">Selectează Gramajul:</label>
+                <select id="cantitate" onchange="actualizeazaPretul()">
+                    <option value="50">50 ml</option>
+                    <option value="100">100 ml</option>
+                </select>
+            </div>
+
+            <button class="add-to-cart">Adaugă în coș</button>
+        </div>
+    </main>
+
+    <section class="tabs-container">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(event, 'descriere')">Povestea Aromei</div>
+            <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
+            <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
+        </div>
+        
+        <div id="descriere" class="tab-content active">
+            <p>Libre Eau de Parfum Intense este parfumul unei femei instinctive, care își trăiește libertatea la maximum. Un contrast vibrant între focul orhideei și răceala lavandei.</p>
+        </div>
+        
+        <div id="ingrediente" class="tab-content">
+            <p><strong>Note de vârf:</strong> Mandarină, Lavandă, Bergamotă.<br>
+               <strong>Note de mijloc:</strong> Floare de portocal, Iasomie, Orhidee sălbatică.<br>
+               <strong>Note de bază:</strong> Vanilie de Madagascar, Boabe de Tonka, Ambră.</p>
+        </div>
+
+        <div id="livrare" class="tab-content">
+            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este intact.</p>
+        </div>
+    </section>
+
+    <script>
+        const preturi = {
+            50: { pret: "1350,00 Lei", per100: "2500,00 Lei / 100ml" },
+            100: { pret: "2700,00 Lei", per100: "2200,33 Lei / 100ml" }
+        };
+
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = element.src;
+                mainImage.style.opacity = '1';
+            }, 200);
+            document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function actualizeazaPretul() {
+            const cantitate = document.getElementById('cantitate').value;
+            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
+            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
