@@ -1,0 +1,198 @@
+:root {
+    --accent-color: #d4af37;
+    --bg-light: #faf9f6;
+    --text-dark: #2c2c2c;
+    --border: #eaeaea;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* --- HEADER --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1.2rem 5%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    text-decoration: none;
+    color: black; /* sau culoarea ta actuală */
+    cursor: pointer;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 28px; /* păstrează cum ai avut */
+}
+
+.logo h1 {
+    font-family: 'Georgia', serif;
+    color: var(--accent-color);
+    letter-spacing: 1.5px;
+    font-size: 1.8rem;
+}
+
+.home_link { text-decoration: none; }
+
+.nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav a:hover { color: var(--accent-color); }
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- LAYOUT --- */
+.product-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 40px;
+}
+
+/* Galerie */
+.gallery-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gallery-thumbs img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.gallery-thumbs img.active {
+    border: 2px solid var(--accent-color);
+}
+
+.main-image-wrapper {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    overflow: hidden;
+}
+
+.main-image {
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+/* Detalii */
+.brand {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #999;
+    letter-spacing: 2px;
+}
+
+.title {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    margin: 10px 0;
+}
+
+.stars { color: #d4af37; margin-bottom: 20px; }
+
+.review-count { color: #aaa; font-size: 0.85rem; font-weight: normal; }
+
+.price { font-size: 2rem; font-weight: 700; }
+
+.description { line-height: 1.8; margin: 20px 0; color: #555; }
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+.add-to-cart {
+    width: 100%;
+    background-color: var(--text-dark);
+    color: #fff;
+    border: none;
+    padding: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: var(--accent-color);
+    color: #000;
+}
+
+/* Tab-uri */
+.tabs-container { max-width: 1200px; margin: 80px auto; padding: 0 5%; }
+
+.tabs { display: flex; border-bottom: 1px solid var(--border); gap: 50px; }
+
+.tab { padding: 15px 0; cursor: pointer; font-weight: 600; color: #aaa; position: relative; }
+
+.tab.active { color: var(--text-dark); }
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; width: 100%; height: 3px;
+    background-color: var(--accent-color);
+}
+
+.tab-content { display: none; padding: 40px 0; animation: fadeIn 0.5s; }
+
+.tab-content.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .product-container { grid-template-columns: 1fr; }
+    .gallery-thumbs { flex-direction: row; order: 2; justify-content: center; }
+    .main-image-wrapper { order: 1; }
+    .details { order: 3; text-align: center; }
+    .hamburger { display: block; }
+    .nav { display: none; width: 100%; position: absolute; top: 100%; left: 0; background: #fff; padding: 20px; }
+    .nav.open { display: block; }
+    .nav ul { flex-direction: column; align-items: center; }
+}
