@@ -1,0 +1,13 @@
+{
+  "defaultTheme": "light",
+  "themes": {
+    "light": {
+      "class": "light-mode",
+      "icon": "🌙"
+    },
+    "dark": {
+      "class": "dark-mode",
+      "icon": "☀️"
+    }
+  }
+}
