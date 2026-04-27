@@ -52,6 +52,31 @@ body {
     transition: color 0.3s;
 }
 
+.light-mode {
+    background: #fff;
+    color: #000;
+}
+
+.dark-mode {
+    background: #111;
+    color: #fff;
+}
+.theme-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.dark-mode .header {
+    background: #494848;
+    color: #fff;
+}
+.theme-btn:hover {
+    transform: scale(1.1);
+}
 .nav a:hover { color: var(--accent-color); }
 
 .hamburger {
