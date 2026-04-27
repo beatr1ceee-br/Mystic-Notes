@@ -375,3 +375,14 @@ html {
 .product-link:hover .product-image img {
     transform: scale(1.05); /* Efect vizual plăcut la hover pe link */
 }
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
