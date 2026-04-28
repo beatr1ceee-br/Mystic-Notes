@@ -51,26 +51,35 @@
             <div class="stars">★★★★★ <span class="review-count">(52 recenzii)</span></div>
 
             <div class="price-section">
-                <div class="price" id="pretAfisat">1300,00 Lei</div>
-                <div class="price-per-100ml" id="pret100ml">2250,00 Lei / 100ml</div>
-            </div>
+                <span id="pretAfisat">1300</span>
+                <select id="currency" onchange="schimbaValuta()">
+                    <option value="MDL">MDL</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="RUB">RUB</option>
+                    <option value="UAH">UAH</option>
+                </select>
 
             <p class="description">
                 Good Girl Blush este o explozie proaspătă și florală ce exprimă feminitatea modernă. Delicat și
                 seducător, parfumul combină vanilia senzuală cu bujorul romantic și note exotice de ylang-ylang.
             </p>
+                <p class="description">
+                    Good Girl Blush este o explozie proaspătă și florală ce exprimă feminitatea modernă. Delicat și
+                    seducător, parfumul combină vanilia senzuală cu bujorul romantic și note exotice de ylang-ylang.
+                </p>
 
-            <div class="select-section">
-                <label for="cantitate">Selectează Gramajul:</label>
-                <select id="cantitate" onchange="actualizeazaPretul()">
-                    <option value="30">30 ml</option>
-                    <option value="50">50 ml</option>
-                    <option value="100">100 ml</option>
-                </select>
+                <div class="select-section">
+                    <label for="cantitate">Selectează Gramajul:</label>
+                    <select id="cantitate" onchange="actualizeazaPretul()">
+                        <option value="30">30 ml</option>
+                        <option value="50">50 ml</option>
+                        <option value="100">100 ml</option>
+                    </select>
+                </div>
+
+                <button class="add-to-cart">Adaugă în coș</button>
             </div>
-
-            <button class="add-to-cart">Adaugă în coș</button>
-        </div>
     </main>
 
     <section class="tabs-container">
@@ -102,13 +111,29 @@
             </p>
         </div>
     </section>
+<script>
+function changeImage(element) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.style.opacity = '0';
 
+    setTimeout(() => {
+        mainImage.src = element.src;
+        mainImage.style.opacity = '1';
+    }, 200);
+
+    document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function openTab(evt, tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+</script>
     <script>
-        const preturi = {
-            30: { pret: "1000,00 Lei", per100: "2250,00 Lei / 100ml" },
-            50: { pret: "1300,00 Lei", per100: "2200,00 Lei / 100ml" },
-            100: { pret: "2250,00 Lei", per100: "2150,00 Lei / 100ml" }
-        };
 
         function changeImage(element) {
             const mainImage = document.getElementById('mainImage');
@@ -121,11 +146,6 @@
             element.classList.add('active');
         }
 
-        function actualizeazaPretul() {
-            const cantitate = document.getElementById('cantitate').value;
-            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
-            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
-        }
 
         function openTab(evt, tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -137,6 +157,78 @@
         document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('menu').classList.toggle('open');
         });
+    </script>
+    <script>
+        const API_KEY = "2ead7947909e434e0bceed37";
+
+        // prețuri în MDL
+        const preturi = {
+            30: 1000,
+            50: 1300,
+            100: 2250
+        };
+
+        let pretBaza = 1300;
+        let rate = {};
+
+        window.onload = function () {
+            fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
+                .then(res => res.json())
+                .then(data => {
+                    rate = data.conversion_rates;
+                    actualizeazaTot();
+                })
+                .catch(err => console.log(err));
+        };
+
+        // 🔥 logica principală
+        function actualizeazaTot() {
+            let valuta = document.getElementById("currency").value;
+            let pretFinal = pretBaza * rate[valuta];
+
+            if (valuta === "EUR") {
+                pretFinal = pretBaza * rate.EUR;
+            }
+
+            if (valuta === "USD") {
+                pretFinal = pretBaza * rate.USD;
+            }
+
+            if (valuta === "RUB") {
+                pretFinal = pretBaza * rate.RUB;
+            }
+
+            if (valuta === "UAH") {
+                pretFinal = pretBaza * rate.UAH;
+            }
+
+            document.getElementById("pretAfisat").innerText =
+                pretFinal.toFixed(2) + " " + valuta;
+
+            let per100 = (pretBaza / 50) * 100;
+
+            if (valuta === "EUR") per100 *= rate.EUR;
+            if (valuta === "USD") per100 *= rate.USD;
+            if (valuta === "RUB") per100 *= rate.RUB;
+            if (valuta === "UAH") per100 *= rate.UAH;
+
+            document.getElementById("pret100ml").innerText =
+                per100.toFixed(2) + " " + valuta + " / 100ml";
+        }
+
+        // schimbare valută
+        function schimbaValuta() {
+            actualizeazaTot();
+        }
+
+        // schimbare gramaj
+        function actualizeazaPretul() {
+            const cantitate = document.getElementById("cantitate").value;
+
+            pretBaza = preturi[cantitate];
+
+            actualizeazaTot();
+        }
     </script>
 </body>
 

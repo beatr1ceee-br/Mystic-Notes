@@ -35,10 +35,10 @@
 
     <main class="product-container">
         <div class="gallery-thumbs">
-            <img src="imp/valentino1.jpg" class="thumb active" onclick="changeImage(this)">
-            <img src="imp/valentino2.avif" class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino3.jpg" class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino4.avif" class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino1.jpg"class="thumb active" onclick="changeImage(this)">
+            <img src="imp/valentino2.avif"class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino3.jpg"class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino4.avif"class="thumb" onclick="changeImage(this)">
         </div>
 
         <div class="main-image-wrapper">
@@ -60,16 +60,33 @@
                 clasică cu o energie modernă, oferind o aromă profundă și memorabilă.
             </p>
 
-            <div class="select-section">
-                <label for="cantitate">Selectează Gramajul:</label>
-                <select id="cantitate" onchange="actualizeazaPretul()">
-                    <option value="50">50 ml</option>
-                    <option value="100">100 ml</option>
-                </select>
-            </div>
+            <div class="price-section">
+                <span id="pretAfisat">3200</span>
 
-            <button class="add-to-cart">Adaugă în coș</button>
-        </div>
+                <select id="currency" onchange="schimbaValuta()">
+                    <option value="MDL">MDL</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="RUB">RUB</option>
+                    <option value="UAH">UAH</option>
+                </select>
+
+
+                <p class="description">
+                    Un parfum intens și seducător inspirat de nopțile din Roma. Valentino Uomo Intense combină eleganța
+                    clasică cu o energie modernă, oferind o aromă profundă și memorabilă.
+                </p>
+
+                <div class="select-section">
+                    <label for="cantitate">Selectează Gramajul:</label>
+                    <select id="cantitate" onchange="actualizeazaPretul()">
+                        <option value="50" data-price="1600">50 ml</option>
+                        <option value="100" data-price="3200">100 ml</option>
+                    </select>
+                </div>
+
+                <button class="add-to-cart">Adaugă în coș</button>
+            </div>
     </main>
 
     <section class="tabs-container">
@@ -101,39 +118,78 @@
             </p>
         </div>
     </section>
+<script>
+function changeImage(element) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.style.opacity = '0';
 
+    setTimeout(() => {
+        mainImage.src = element.src;
+        mainImage.style.opacity = '1';
+    }, 200);
+
+    document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function openTab(evt, tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+</script>
     <script>
-        const preturi = {
-            50: { pret: "1600,00 Lei", per100: "3200,00 Lei / 100ml" },
-            100: { pret: "3200,00 Lei", per100: "2900,00 Lei / 100ml" }
-        };
+        const API_KEY = "2ead7947909e434e0bceed37";
 
-        function changeImage(element) {
-            const mainImage = document.getElementById('mainImage');
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = element.src;
-                mainImage.style.opacity = '1';
-            }, 200);
-            document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
-            element.classList.add('active');
+        let rate = {};
+        let pretBaza = 3200;
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
+                .then(res => res.json())
+                .then(data => {
+                    rate = data.conversion_rates;
+                    actualizeazaTot();
+                });
+
+        });
+
+        // 🔥 update complet
+        function actualizeazaTot() {
+            const valuta = document.getElementById("currency").value;
+
+            let pretFinal = pretBaza * (rate[valuta] || 1);
+
+            document.getElementById("pretAfisat").innerText =
+                pretFinal.toFixed(2) + " " + valuta;
+
+            let per100 = pretBaza * (rate[valuta] || 1);
+
+            document.getElementById("pret100ml").innerText =
+                per100.toFixed(2) + " " + valuta + " / 100ml";
         }
 
+        // schimb valută
+        function schimbaValuta() {
+            actualizeazaTot();
+        }
+
+        // schimb gramaj
         function actualizeazaPretul() {
-            const cantitate = document.getElementById('cantitate').value;
-            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
-            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
-        }
+            const select = document.getElementById("cantitate");
+            pretBaza = parseFloat(select.selectedOptions[0].dataset.price);
 
-        function openTab(evt, tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
+            actualizeazaTot();
         }
 
         document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('menu').classList.toggle('open');
+        // meniu
+        document.getElementById("hamburger").addEventListener("click", function () {
+            document.getElementById("menu").classList.toggle("open");
         });
     </script>
 </body>
