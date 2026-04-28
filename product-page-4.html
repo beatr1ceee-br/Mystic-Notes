@@ -1,30 +1,35 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Girl Blush - Mystic Notes</title>
     <link rel="stylesheet" href="products-style.css">
 </head>
+
 <body>
 
     <header class="header">
         <a class="home_link" href="index.html">
-            <div class="logo"><h1>Mystic Notes</h1></div>
+            <div class="logo">
+                <h1>Mystic Notes</h1>
+            </div>
         </a>
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
             <ul>
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="index.html#catalog">Catalog</a></li>
-                <li><a href="despre.html">Despre noi</a></li>
-                <li><a href="Contact us.html">Contact</a></li>
-            </ul>
+                <ul class="nav-links">
+                    <li><a href="index.html#top">Acasă</a></li>
+                    <li><a href="collection.html">Catalog</a></li>
+                    <li><a href="index.html#despre-noi">Despre Noi</a></li>
+                    <li><a href="Contact us.html">Contact</a></li>
+                </ul>
         </nav>
-          <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-                <span class="icon">🌙</span>
-            </button>
-    <script src="theme.js"></script>
+        <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
+            <span class="icon">🌙</span>
+        </button>
+        <script src="theme.js"></script>
     </header>
 
     <main class="product-container">
@@ -44,14 +49,15 @@
             <div class="brand">Carolina Herrera</div>
             <h1 class="title">Rose Blossom</h1>
             <div class="stars">★★★★★ <span class="review-count">(52 recenzii)</span></div>
-            
+
             <div class="price-section">
                 <div class="price" id="pretAfisat">1300,00 Lei</div>
                 <div class="price-per-100ml" id="pret100ml">2250,00 Lei / 100ml</div>
             </div>
 
             <p class="description">
-                Good Girl Blush este o explozie proaspătă și florală ce exprimă feminitatea modernă. Delicat și seducător, parfumul combină vanilia senzuală cu bujorul romantic și note exotice de ylang-ylang.
+                Good Girl Blush este o explozie proaspătă și florală ce exprimă feminitatea modernă. Delicat și
+                seducător, parfumul combină vanilia senzuală cu bujorul romantic și note exotice de ylang-ylang.
             </p>
 
             <div class="select-section">
@@ -73,13 +79,14 @@
             <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
             <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
         </div>
-        
+
         <div id="descriere" class="tab-content active">
             <p>
-                Good Girl Blush reinterpretă feminitatea printr-un parfum delicat și puternic în același timp. Inspirat de contrastul dintre romantism și încredere, acest parfum este simbolul femeii moderne.
+                Good Girl Blush reinterpretă feminitatea printr-un parfum delicat și puternic în același timp. Inspirat
+                de contrastul dintre romantism și încredere, acest parfum este simbolul femeii moderne.
             </p>
         </div>
-        
+
         <div id="ingrediente" class="tab-content">
             <p>
                 <strong>Note de vârf:</strong> Bergamotă, Mandarină.<br>
@@ -90,7 +97,8 @@
 
         <div id="livrare" class="tab-content">
             <p>
-                Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este intact.
+                Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului
+                este intact.
             </p>
         </div>
     </section>
@@ -126,9 +134,10 @@
             evt.currentTarget.classList.add('active');
         }
 
-        document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('menu').classList.toggle('open');
         });
     </script>
 </body>
+
 </html>

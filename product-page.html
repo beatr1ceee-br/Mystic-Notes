@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YSL Libre Intense - Mystic Notes</title>
     <link rel="stylesheet" href="products-style.css">
 </head>
+
 <body>
 
     <header class="header">
         <a class="home_link logo" href="index.html">
-    <h1>Mystic Notes</h1>
-</a>
+            <h1>Mystic Notes</h1>
+        </a>
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
             <ul>
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="index.html#catalog">Catalog</a></li>
-                <li><a href="despre.html">Despre noi</a></li>
-                <li><a href="Contact us.html">Contact</a></li>
+                <ul class="nav-links">
+                    <li><a href="index.html#top">Acasă</a></li>
+                    <li><a href="collection.html">Catalog</a></li>
+                    <li><a href="index.html#despre-noi">Despre Noi</a></li>
+                    <li><a href="Contact us.html">Contact</a></li>
+                </ul>
             </ul>
         </nav>
-          <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-                <span class="icon">🌙</span>
-            </button>
-    <script src="theme.js"></script>
+        <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
+            <span class="icon">🌙</span>
+        </button>
+        <script src="theme.js"></script>
     </header>
 
     <main class="product-container">
@@ -43,14 +47,15 @@
             <div class="brand">Midnight Velvet</div>
             <h1 class="title">Libre Intense</h1>
             <div class="stars">★★★★★ <span class="review-count">(48 recenzii)</span></div>
-            
+
             <div class="price-section">
                 <div class="price" id="pretAfisat">2700,00 Lei</div>
                 <div class="price-per-100ml" id="pret100ml">2500,00 Lei / 100ml</div>
             </div>
 
             <p class="description">
-                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea florii de portocal și aura mistică a orhideei sălbatice.
+                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea
+                florii de portocal și aura mistică a orhideei sălbatice.
             </p>
 
             <div class="select-section">
@@ -71,19 +76,22 @@
             <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
             <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
         </div>
-        
+
         <div id="descriere" class="tab-content active">
-            <p>Libre Eau de Parfum Intense este parfumul unei femei instinctive, care își trăiește libertatea la maximum. Un contrast vibrant între focul orhideei și răceala lavandei.</p>
+            <p>Libre Eau de Parfum Intense este parfumul unei femei instinctive, care își trăiește libertatea la
+                maximum. Un contrast vibrant între focul orhideei și răceala lavandei.</p>
         </div>
-        
+
         <div id="ingrediente" class="tab-content">
             <p><strong>Note de vârf:</strong> Mandarină, Lavandă, Bergamotă.<br>
-               <strong>Note de mijloc:</strong> Floare de portocal, Iasomie, Orhidee sălbatică.<br>
-               <strong>Note de bază:</strong> Vanilie de Madagascar, Boabe de Tonka, Ambră.</p>
+                <strong>Note de mijloc:</strong> Floare de portocal, Iasomie, Orhidee sălbatică.<br>
+                <strong>Note de bază:</strong> Vanilie de Madagascar, Boabe de Tonka, Ambră.
+            </p>
         </div>
 
         <div id="livrare" class="tab-content">
-            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este intact.</p>
+            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este
+                intact.</p>
         </div>
     </section>
 
@@ -117,9 +125,10 @@
             evt.currentTarget.classList.add('active');
         }
 
-        document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('menu').classList.toggle('open');
         });
     </script>
 </body>
+
 </html>
