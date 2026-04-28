@@ -19,10 +19,12 @@
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
             <ul>
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="index.html#catalog">Catalog</a></li>
-                <li><a href="despre.html">Despre noi</a></li>
-                <li><a href="Contact us.html">Contact</a></li>
+                <ul class="nav-links">
+                    <li><a href="index.html#top">Acasă</a></li>
+                    <li><a href="collection.html">Catalog</a></li>
+                    <li><a href="index.html#despre-noi">Despre Noi</a></li>
+                    <li><a href="Contact us.html">Contact</a></li>
+                </ul>
             </ul>
         </nav>
         <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
@@ -47,6 +49,16 @@
             <div class="brand">Morning Whisper</div>
             <h1 class="title">Born in Roma Uomo Intense</h1>
             <div class="stars">★★★★★ <span class="review-count">(36 recenzii)</span></div>
+
+            <div class="price-section">
+                <div class="price" id="pretAfisat">3200,00 Lei</div>
+                <div class="price-per-100ml" id="pret100ml">3200,00 Lei / 100ml</div>
+            </div>
+
+            <p class="description">
+                Un parfum intens și seducător inspirat de nopțile din Roma. Valentino Uomo Intense combină eleganța
+                clasică cu o energie modernă, oferind o aromă profundă și memorabilă.
+            </p>
 
             <div class="price-section">
                 <span id="pretAfisat">3200</span>
@@ -173,6 +185,8 @@ function openTab(evt, tabId) {
             actualizeazaTot();
         }
 
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('open');
         // meniu
         document.getElementById("hamburger").addEventListener("click", function () {
             document.getElementById("menu").classList.toggle("open");

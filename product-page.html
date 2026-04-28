@@ -17,10 +17,12 @@
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
             <ul>
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="index.html#catalog">Catalog</a></li>
-                <li><a href="despre.html">Despre noi</a></li>
-                <li><a href="Contact us.html">Contact</a></li>
+                <ul class="nav-links">
+                    <li><a href="index.html#top">Acasă</a></li>
+                    <li><a href="collection.html">Catalog</a></li>
+                    <li><a href="index.html#despre-noi">Despre Noi</a></li>
+                    <li><a href="Contact us.html">Contact</a></li>
+                </ul>
             </ul>
         </nav>
         <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
@@ -122,6 +124,41 @@ function openTab(evt, tabId) {
 }
 </script>
     <script>
+        const preturi = {
+            50: { pret: "1350,00 Lei", per100: "2500,00 Lei / 100ml" },
+            100: { pret: "2700,00 Lei", per100: "2200,33 Lei / 100ml" }
+        };
+
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = element.src;
+                mainImage.style.opacity = '1';
+            }, 200);
+            document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function actualizeazaPretul() {
+            const cantitate = document.getElementById('cantitate').value;
+            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
+            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('open');
+        });
+    </script>
+</body>
+
 const API_KEY = "2ead7947909e434e0bceed37";
 
 let rate = {};
