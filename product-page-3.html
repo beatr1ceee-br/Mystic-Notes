@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YSL Libre Intense - Mystic Notes</title>
     <link rel="stylesheet" href="products-style.css">
 </head>
+
 <body>
 
     <header class="header">
         <a class="home_link" href="index.html">
-            <div class="logo"><h1>Mystic Notes</h1></div>
+            <div class="logo">
+                <h1>Mystic Notes</h1>
+            </div>
         </a>
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
@@ -21,10 +25,10 @@
                 <li><a href="Contact us.html">Contact</a></li>
             </ul>
         </nav>
-          <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-                <span class="icon">🌙</span>
-            </button>
-    <script src="theme.js"></script>
+        <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
+            <span class="icon">🌙</span>
+        </button>
+        <script src="theme.js"></script>
     </header>
 
     <main class="product-container">
@@ -43,14 +47,22 @@
             <div class="brand">The Scent For Her Elixir Parfum</div>
             <h1 class="title">Amber Noir</h1>
             <div class="stars">★★★★★ <span class="review-count">(48 recenzii)</span></div>
-            
+
             <div class="price-section">
-                <div class="price" id="pretAfisat">3115,00 Lei</div>
-                <div class="price-per-100ml" id="pret100ml">3000,00 Lei / 100ml</div>
+                <span id="pretAfisat">3115</span>
+
+                <select id="currency" onchange="schimbaValuta()">
+                    <option value="MDL">MDL</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="RUB">RUB</option>
+                    <option value="UAH">UAH</option>
+                </select>
             </div>
 
             <p class="description">
-                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea florii de portocal și aura mistică a orhideei sălbatice.
+                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea
+                florii de portocal și aura mistică a orhideei sălbatice.
             </p>
 
             <div class="select-section">
@@ -71,27 +83,27 @@
             <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
             <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
         </div>
-        
+
         <div id="descriere" class="tab-content active">
-            <p>Povestea aromei Amber Noir este o călătorie senzorială care îmbină misterul nopții cu o căldură sofisticată. Aceasta nu este doar un parfum, ci o experiență olfactivă construită pe contraste, fiind adesea descrisă ca o aromă „orientală-modernă”.</p>
+            <p>Povestea aromei Amber Noir este o călătorie senzorială care îmbină misterul nopții cu o căldură
+                sofisticată. Aceasta nu este doar un parfum, ci o experiență olfactivă construită pe contraste, fiind
+                adesea descrisă ca o aromă „orientală-modernă”.</p>
         </div>
-        
+
         <div id="ingrediente" class="tab-content">
             <p><strong>Note de vârf:</strong> Piper Roz <br>
-               <strong>Note de mijloc:</strong> Chihlimbar, Lemn <br>
-               <strong>Note de bază:</strong> Floare de Belladonna. </p>
+                <strong>Note de mijloc:</strong> Chihlimbar, Lemn <br>
+                <strong>Note de bază:</strong> Floare de Belladonna.
+            </p>
         </div>
 
         <div id="livrare" class="tab-content">
-            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este intact.</p>
+            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este
+                intact.</p>
         </div>
     </section>
 
     <script>
-        const preturi = {
-            50: { pret: "1500,00 Lei", per100: "3100,00 Lei / 100ml" },
-            100: { pret: "3115,00 Lei", per100: "3000,33 Lei / 100ml" }
-        };
 
         function changeImage(element) {
             const mainImage = document.getElementById('mainImage');
@@ -104,12 +116,6 @@
             element.classList.add('active');
         }
 
-        function actualizeazaPretul() {
-            const cantitate = document.getElementById('cantitate').value;
-            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
-            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
-        }
-
         function openTab(evt, tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -117,9 +123,65 @@
             evt.currentTarget.classList.add('active');
         }
 
-        document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('menu').classList.toggle('open');
         });
     </script>
+    <script>
+const API_KEY = "2ead7947909e434e0bceed37";
+
+let rate = {};
+let pretBaza = 1500;
+
+const preturi = {
+    50: 1500,
+    100: 3115
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
+        .then(res => res.json())
+        .then(data => {
+            rate = data.conversion_rates;
+            actualizeazaTot();
+        });
+
+});
+
+// 🔥 update principal
+function actualizeazaTot() {
+    const valuta = document.getElementById("currency").value;
+
+    let pretFinal = pretBaza * (rate[valuta] || 1);
+
+    document.getElementById("pretAfisat").innerText =
+        pretFinal.toFixed(2) + " " + valuta;
+
+    let per100 = (pretBaza / 50) * 100 * (rate[valuta] || 1);
+
+    document.getElementById("pret100ml").innerText =
+        per100.toFixed(2) + " " + valuta + " / 100ml";
+}
+
+// schimb valută
+function schimbaValuta() {
+    actualizeazaTot();
+}
+
+// schimb gramaj
+function actualizeazaPretul() {
+    const select = document.getElementById("cantitate");
+    pretBaza = parseFloat(select.selectedOptions[0].value);
+
+    actualizeazaTot();
+}
+
+// meniu
+document.getElementById("hamburger").addEventListener("click", function () {
+    document.getElementById("menu").classList.toggle("open");
+});
+</script>
 </body>
+
 </html>

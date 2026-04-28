@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YSL Libre Intense - Mystic Notes</title>
     <link rel="stylesheet" href="products-style.css">
 </head>
+
 <body>
 
     <header class="header">
         <a class="home_link logo" href="index.html">
-    <h1>Mystic Notes</h1>
-</a>
+            <h1>Mystic Notes</h1>
+        </a>
         <div class="hamburger" id="hamburger">☰</div>
         <nav class="nav" id="menu">
             <ul>
@@ -21,10 +23,10 @@
                 <li><a href="Contact us.html">Contact</a></li>
             </ul>
         </nav>
-          <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-                <span class="icon">🌙</span>
-            </button>
-    <script src="theme.js"></script>
+        <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
+            <span class="icon">🌙</span>
+        </button>
+        <script src="theme.js"></script>
     </header>
 
     <main class="product-container">
@@ -43,22 +45,30 @@
             <div class="brand">Midnight Velvet</div>
             <h1 class="title">Libre Intense</h1>
             <div class="stars">★★★★★ <span class="review-count">(48 recenzii)</span></div>
-            
+
             <div class="price-section">
-                <div class="price" id="pretAfisat">2700,00 Lei</div>
-                <div class="price-per-100ml" id="pret100ml">2500,00 Lei / 100ml</div>
+                <span id="pretAfisat">1300</span>
+
+                <select id="currency" onchange="schimbaValuta()">
+                    <option value="MDL">MDL</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="RUB">RUB</option>
+                    <option value="UAH">UAH</option>
+                </select>
             </div>
 
             <p class="description">
-                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea florii de portocal și aura mistică a orhideei sălbatice.
+                O reinterpretare mai intensă a libertății. Libre Intense îmbină lavanda franțuzească cu senzualitatea
+                florii de portocal și aura mistică a orhideei sălbatice.
             </p>
 
             <div class="select-section">
                 <label for="cantitate">Selectează Gramajul:</label>
                 <select id="cantitate" onchange="actualizeazaPretul()">
-                    <option value="50">50 ml</option>
-                    <option value="100">100 ml</option>
-                </select>
+    <option value="50" data-price="1350">50 ml</option>
+    <option value="100" data-price="2700">100 ml</option>
+</select>
             </div>
 
             <button class="add-to-cart">Adaugă în coș</button>
@@ -71,55 +81,69 @@
             <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
             <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
         </div>
-        
+
         <div id="descriere" class="tab-content active">
-            <p>Libre Eau de Parfum Intense este parfumul unei femei instinctive, care își trăiește libertatea la maximum. Un contrast vibrant între focul orhideei și răceala lavandei.</p>
+            <p>Libre Eau de Parfum Intense este parfumul unei femei instinctive, care își trăiește libertatea la
+                maximum. Un contrast vibrant între focul orhideei și răceala lavandei.</p>
         </div>
-        
+
         <div id="ingrediente" class="tab-content">
             <p><strong>Note de vârf:</strong> Mandarină, Lavandă, Bergamotă.<br>
-               <strong>Note de mijloc:</strong> Floare de portocal, Iasomie, Orhidee sălbatică.<br>
-               <strong>Note de bază:</strong> Vanilie de Madagascar, Boabe de Tonka, Ambră.</p>
+                <strong>Note de mijloc:</strong> Floare de portocal, Iasomie, Orhidee sălbatică.<br>
+                <strong>Note de bază:</strong> Vanilie de Madagascar, Boabe de Tonka, Ambră.
+            </p>
         </div>
 
         <div id="livrare" class="tab-content">
-            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este intact.</p>
+            <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este
+                intact.</p>
         </div>
     </section>
 
     <script>
-        const preturi = {
-            50: { pret: "1350,00 Lei", per100: "2500,00 Lei / 100ml" },
-            100: { pret: "2700,00 Lei", per100: "2200,33 Lei / 100ml" }
-        };
+const API_KEY = "2ead7947909e434e0bceed37";
 
-        function changeImage(element) {
-            const mainImage = document.getElementById('mainImage');
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = element.src;
-                mainImage.style.opacity = '1';
-            }, 200);
-            document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
-            element.classList.add('active');
-        }
+let rate = {};
+let pretBaza = 1350;
 
-        function actualizeazaPretul() {
-            const cantitate = document.getElementById('cantitate').value;
-            document.getElementById('pretAfisat').textContent = preturi[cantitate].pret;
-            document.getElementById('pret100ml').textContent = preturi[cantitate].per100;
-        }
+document.addEventListener("DOMContentLoaded", () => {
 
-        function openTab(evt, tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('menu').classList.toggle('open');
+    fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
+        .then(res => res.json())
+        .then(data => {
+            rate = data.conversion_rates;
+            actualizeazaTot();
         });
-    </script>
-</body>
+
+});
+
+// 🔥 conversie principală
+function actualizeazaTot() {
+    const valuta = document.getElementById("currency").value;
+
+    let pretFinal = pretBaza * (rate[valuta] || 1);
+
+    document.getElementById("pretAfisat").innerText =
+        pretFinal.toFixed(2) + " " + valuta;
+
+    let per100 = (pretBaza / 50) * 100 * (rate[valuta] || 1);
+
+    document.getElementById("pret100ml").innerText =
+        per100.toFixed(2) + " " + valuta + " / 100ml";
+}
+
+// schimb valută
+function schimbaValuta() {
+    actualizeazaTot();
+}
+
+// schimb gramaj
+function actualizeazaPretul() {
+    const select = document.getElementById("cantitate");
+    pretBaza = parseFloat(select.selectedOptions[0].dataset.price);
+
+    actualizeazaTot();
+}
+</script>
+</script>
 </html>
