@@ -33,10 +33,10 @@
 
     <main class="product-container">
         <div class="gallery-thumbs">
-            <img src="imp/valentino1.jpg" class="thumb active" onclick="changeImage(this)">
-            <img src="imp/valentino2.avif" class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino3.jpg" class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino4.avif" class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino1.jpg"class="thumb active" onclick="changeImage(this)">
+            <img src="imp/valentino2.avif"class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino3.jpg"class="thumb" onclick="changeImage(this)">
+            <img src="imp/valentino4.avif"class="thumb" onclick="changeImage(this)">
         </div>
 
         <div class="main-image-wrapper">
@@ -106,7 +106,28 @@
             </p>
         </div>
     </section>
+<script>
+function changeImage(element) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.style.opacity = '0';
 
+    setTimeout(() => {
+        mainImage.src = element.src;
+        mainImage.style.opacity = '1';
+    }, 200);
+
+    document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function openTab(evt, tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+</script>
     <script>
         const API_KEY = "2ead7947909e434e0bceed37";
 
@@ -133,7 +154,7 @@
             document.getElementById("pretAfisat").innerText =
                 pretFinal.toFixed(2) + " " + valuta;
 
-            let per100 = (pretBaza / 100) * 100 * (rate[valuta] || 1);
+            let per100 = pretBaza * (rate[valuta] || 1);
 
             document.getElementById("pret100ml").innerText =
                 per100.toFixed(2) + " " + valuta + " / 100ml";

@@ -102,7 +102,28 @@
                 intact.</p>
         </div>
     </section>
+<script>
+function changeImage(element) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.style.opacity = '0';
 
+    setTimeout(() => {
+        mainImage.src = element.src;
+        mainImage.style.opacity = '1';
+    }, 200);
+
+    document.querySelectorAll('.thumb').forEach(img => img.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function openTab(evt, tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+</script>
     <script>
 
         function changeImage(element) {
@@ -158,8 +179,7 @@ function actualizeazaTot() {
     document.getElementById("pretAfisat").innerText =
         pretFinal.toFixed(2) + " " + valuta;
 
-    let per100 = (pretBaza / 50) * 100 * (rate[valuta] || 1);
-
+    let per100 = pretBaza * (rate[valuta] || 1);
     document.getElementById("pret100ml").innerText =
         per100.toFixed(2) + " " + valuta + " / 100ml";
 }
