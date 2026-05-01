@@ -4,123 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morning Whisper Born in Roma Uomo Intense - Mystic Notes</title>
+    <title>Born in Roma Uomo Intense - Mystic Notes</title>
     <link rel="stylesheet" href="products-style.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <a class="home_link" href="index.html">
-            <div class="logo">
-                <h1>Mystic Notes</h1>
-            </div>
-        </a>
-        <div class="hamburger" id="hamburger">☰</div>
-        <nav class="nav" id="menu">
-            <ul>
-                <ul class="nav-links">
-                    <li><a href="index.html#top">Acasă</a></li>
-                    <li><a href="collection.html">Catalog</a></li>
-                    <li><a href="index.html#despre-noi">Despre Noi</a></li>
-                    <li><a href="Contact us.html">Contact</a></li>
-                </ul>
-            </ul>
-        </nav>
-        <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-            <span class="icon">🌙</span>
-        </button>
-        <script src="theme.js"></script>
-    </header>
+<header class="header">
+    <a class="home_link logo" href="index.html">
+        <h1>Mystic Notes</h1>
+    </a>
 
-    <main class="product-container">
-        <div class="gallery-thumbs">
-            <img src="imp/valentino1.jpg"class="thumb active" onclick="changeImage(this)">
-            <img src="imp/valentino2.avif"class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino3.jpg"class="thumb" onclick="changeImage(this)">
-            <img src="imp/valentino4.avif"class="thumb" onclick="changeImage(this)">
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <nav class="nav" id="menu">
+        <ul class="nav-links">
+            <li><a href="index.html#top">Acasă</a></li>
+            <li><a href="collection.html">Catalog</a></li>
+            <li><a href="index.html#despre-noi">Despre Noi</a></li>
+            <li><a href="Contact us.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <button id="theme-toggle" class="theme-btn">
+        <span class="icon">🌙</span>
+    </button>
+
+    <script src="theme.js"></script>
+</header>
+
+<main class="product-container">
+
+    <div class="gallery-thumbs">
+        <img src="imp/valentino1.jpg" class="thumb active" onclick="changeImage(this)">
+        <img src="imp/valentino2.avif" class="thumb" onclick="changeImage(this)">
+        <img src="imp/valentino3.jpg" class="thumb" onclick="changeImage(this)">
+        <img src="imp/valentino4.avif" class="thumb" onclick="changeImage(this)">
+    </div>
+
+    <div class="main-image-wrapper">
+        <img src="imp/valentino1.jpg" id="mainImage" class="main-image">
+    </div>
+
+    <div class="details">
+        <div class="brand">Morning Whisper</div>
+        <h1 class="title">Born in Roma Uomo Intense</h1>
+
+        <div class="stars">★★★★★ <span class="review-count">(36 recenzii)</span></div>
+
+        <div class="price-section">
+            <span id="pretAfisat">1600</span>
+
+            <select id="currency" onchange="schimbaValuta()">
+                <option value="MDL">MDL</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="RUB">RUB</option>
+                <option value="UAH">UAH</option>
+            </select>
         </div>
 
-        <div class="main-image-wrapper">
-            <img src="imp/valentina01.avif" id="mainImage" class="main-image" alt="Valentino Uomo Intense">
+        <p class="description">
+            Un parfum intens și seducător inspirat de nopțile din Roma. 
+            Valentino Uomo Intense combină eleganța clasică cu o energie modernă, 
+            oferind o aromă profundă și memorabilă.
+        
+        </p>
+
+        <div class="select-section">
+            <label for="cantitate">Selectează Gramajul:</label>
+            <select id="cantitate" onchange="actualizeazaPretul()">
+                <option value="50" data-price="1600">50 ml</option>
+                <option value="100" data-price="3200">100 ml</option>
+            </select>
         </div>
 
-        <div class="details">
-            <div class="brand">Morning Whisper</div>
-            <h1 class="title">Born in Roma Uomo Intense</h1>
-            <div class="stars">★★★★★ <span class="review-count">(36 recenzii)</span></div>
+        <button class="add-to-cart">Adaugă în coș</button>
+    </div>
 
-            <div class="price-section">
-                <div class="price" id="pretAfisat">3200,00 Lei</div>
-                <div class="price-per-100ml" id="pret100ml">3200,00 Lei / 100ml</div>
-            </div>
+</main>
 
-            <p class="description">
-                Un parfum intens și seducător inspirat de nopțile din Roma. Valentino Uomo Intense combină eleganța
-                clasică cu o energie modernă, oferind o aromă profundă și memorabilă.
-            </p>
+<section class="tabs-container">
 
-            <div class="price-section">
-                <span id="pretAfisat">3200</span>
+    <div class="tabs">
+        <div class="tab active" onclick="openTab(event, 'descriere')">Povestea Aromei</div>
+        <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
+        <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
+    </div>
 
-                <select id="currency" onchange="schimbaValuta()">
-                    <option value="MDL">MDL</option>
-                    <option value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                    <option value="RUB">RUB</option>
-                    <option value="UAH">UAH</option>
-                </select>
+    <div id="descriere" class="tab-content active">
+        <p>Born in Roma Uomo Intense este expresia unei masculinități moderne, 
+            puternice și carismatice. Inspirat de orașul etern, parfumul surprinde 
+            contrastul dintre tradiție și modernitate.</p>
+    </div>
 
+    <div id="ingrediente" class="tab-content">
+        <p>
+            <strong>Note de vârf:</strong> Vanilie<br>
+            <strong>Note de mijloc:</strong> Lavandă<br>
+            <strong>Note de bază:</strong> Vetiver
+        </p>
+    </div>
 
-                <p class="description">
-                    Un parfum intens și seducător inspirat de nopțile din Roma. Valentino Uomo Intense combină eleganța
-                    clasică cu o energie modernă, oferind o aromă profundă și memorabilă.
-                </p>
+    <div id="livrare" class="tab-content">
+        <p>Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului este
+                intact.</p>
+    </div>
 
-                <div class="select-section">
-                    <label for="cantitate">Selectează Gramajul:</label>
-                    <select id="cantitate" onchange="actualizeazaPretul()">
-                        <option value="50" data-price="1600">50 ml</option>
-                        <option value="100" data-price="3200">100 ml</option>
-                    </select>
-                </div>
+</section>
 
-                <button class="add-to-cart">Adaugă în coș</button>
-            </div>
-    </main>
-
-    <section class="tabs-container">
-        <div class="tabs">
-            <div class="tab active" onclick="openTab(event, 'descriere')">Povestea Aromei</div>
-            <div class="tab" onclick="openTab(event, 'ingrediente')">Note Olfactive</div>
-            <div class="tab" onclick="openTab(event, 'livrare')">Livrare & Retur</div>
-        </div>
-
-        <div id="descriere" class="tab-content active">
-            <p>
-                Born in Roma Uomo Intense este expresia unei masculinități moderne, puternice și carismatice. Inspirat
-                de orașul etern, parfumul surprinde contrastul dintre tradiție și modernitate.
-            </p>
-        </div>
-
-        <div id="ingrediente" class="tab-content">
-            <p>
-                <strong>Note de vârf:</strong> Vanilie.<br>
-                <strong>Note de mijloc:</strong> Lavandă.<br>
-                <strong>Note de bază:</strong> Vetiver.
-            </p>
-        </div>
-
-        <div id="livrare" class="tab-content">
-            <p>
-                Livrare premium în 24-48 de ore. Returul este acceptat în termen de 14 zile dacă sigiliul produsului
-                este intact.
-            </p>
-        </div>
-    </section>
 <script>
+const API_KEY = "2ead7947909e434e0bceed37";
+
+let rate = {};
+let pretBaza = 1600;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
+        .then(res => res.json())
+        .then(data => {
+            rate = data.conversion_rates;
+            actualizeazaTot();
+        });
+
+});
+
+function actualizeazaTot() {
+    const valuta = document.getElementById("currency").value;
+
+    let pretFinal = pretBaza * (rate[valuta] || 1);
+
+    document.getElementById("pretAfisat").innerText =
+        pretFinal.toFixed(2) + " " + valuta;
+
+    let per100 = (pretBaza / 50) * 100 * (rate[valuta] || 1);
+
+    document.getElementById("pret100ml").innerText =
+        per100.toFixed(2) + " " + valuta + " / 100ml";
+}
+
+
+function schimbaValuta() {
+    actualizeazaTot();
+}
+
+
+function actualizeazaPretul() {
+    const select = document.getElementById("cantitate");
+    pretBaza = parseFloat(select.selectedOptions[0].dataset.price);
+
+    actualizeazaTot();
+}
+
+
 function changeImage(element) {
     const mainImage = document.getElementById('mainImage');
+
     mainImage.style.opacity = '0';
 
     setTimeout(() => {
@@ -139,59 +179,13 @@ function openTab(evt, tabId) {
     document.getElementById(tabId).classList.add('active');
     evt.currentTarget.classList.add('active');
 }
+
+// hamburger
+document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('menu').classList.toggle('open');
+});
 </script>
-    <script>
-        const API_KEY = "2ead7947909e434e0bceed37";
 
-        let rate = {};
-        let pretBaza = 3200;
-
-        document.addEventListener("DOMContentLoaded", () => {
-
-            fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/MDL`)
-                .then(res => res.json())
-                .then(data => {
-                    rate = data.conversion_rates;
-                    actualizeazaTot();
-                });
-
-        });
-
-        // 🔥 update complet
-        function actualizeazaTot() {
-            const valuta = document.getElementById("currency").value;
-
-            let pretFinal = pretBaza * (rate[valuta] || 1);
-
-            document.getElementById("pretAfisat").innerText =
-                pretFinal.toFixed(2) + " " + valuta;
-
-            let per100 = pretBaza * (rate[valuta] || 1);
-
-            document.getElementById("pret100ml").innerText =
-                per100.toFixed(2) + " " + valuta + " / 100ml";
-        }
-
-        // schimb valută
-        function schimbaValuta() {
-            actualizeazaTot();
-        }
-
-        // schimb gramaj
-        function actualizeazaPretul() {
-            const select = document.getElementById("cantitate");
-            pretBaza = parseFloat(select.selectedOptions[0].dataset.price);
-
-            actualizeazaTot();
-        }
-
-        document.getElementById('hamburger').addEventListener('click', function () {
-            document.getElementById('menu').classList.toggle('open');
-        // meniu
-        document.getElementById("hamburger").addEventListener("click", function () {
-            document.getElementById("menu").classList.toggle("open");
-        });
-    </script>
 </body>
 
 </html>
