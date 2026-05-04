@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mystic Notes</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css">
 </head>
@@ -30,31 +31,33 @@
                     <i class="fi fi-br-search"></i>
                 </button>
             </div>
-            <button id="theme-toggle" class="theme-btn" aria-label="Schimbă tema">
-                <span class="icon">🌙</span>
-            </button>
-            <script src="theme.js"></script>
+
+            <!-- BUTON TEMĂ (simplificat) -->
+            <button id="theme-toggle" class="theme-btn">🌙</button>
         </div>
     </header>
 
-    <script src="script.js"></script>
-
     <main>
+
         <section class="hero">
             <div class="hero-content">
                 <h1>Descoperă Esența Ta</h1>
-                <p>Parfumuri artizanale, create cu pasiune pentru a lăsa o amprentă de neuitat. Găsește aroma care te
-                    definește.</p>
+                <p>
+                    Parfumuri artizanale, create cu pasiune pentru a lăsa o amprentă de neuitat.
+                    Găsește aroma care te definește.
+                </p>
+
                 <a href="collection.html">
                     <button class="cta-btn">Explorează Colecția</button>
                 </a>
             </div>
         </section>
+
         <section class="catalog" id="catalog">
             <h2 class="section-title">Arome Deosebite</h2>
 
             <div class="product-grid">
-                <!-- PRODUS 1 -->
+
                 <div class="product-card">
                     <a href="product-page.html" class="product-link">
                         <div class="product-image">
@@ -62,12 +65,11 @@
                         </div>
                         <h3 class="product-name">Midnight Velvet</h3>
                     </a>
-                    <p class="product-notes">Note: Trandafir negru, Vanilie, Lemn de Santal</p>
+                    <p class="product-notes">Trandafir negru • Vanilie • Lemn de Santal</p>
                     <p class="product-price">2700 lei</p>
                     <button class="add-to-cart-btn">Adaugă în coș</button>
                 </div>
 
-                <!-- PRODUS 2 -->
                 <div class="product-card">
                     <a href="product-page-2.html" class="product-link">
                         <div class="product-image">
@@ -75,12 +77,11 @@
                         </div>
                         <h3 class="product-name">Morning Whisper</h3>
                     </a>
-                    <p class="product-notes">Note: Bergamotă, Iasomie, Mosc alb</p>
+                    <p class="product-notes">Bergamotă • Iasomie • Mosc alb</p>
                     <p class="product-price">2950 lei</p>
                     <button class="add-to-cart-btn">Adaugă în coș</button>
                 </div>
 
-                <!-- PRODUS 3 -->
                 <div class="product-card">
                     <a href="product-page-3.html" class="product-link">
                         <div class="product-image">
@@ -88,12 +89,11 @@
                         </div>
                         <h3 class="product-name">Amber Noir</h3>
                     </a>
-                    <p class="product-notes">Note: Chihlimbar, Condimente, Tabac</p>
+                    <p class="product-notes">Chihlimbar • Condimente • Tabac</p>
                     <p class="product-price">3115 lei</p>
                     <button class="add-to-cart-btn">Adaugă în coș</button>
                 </div>
 
-                <!-- PRODUS 4 -->
                 <div class="product-card">
                     <a href="product-page-4.html" class="product-link">
                         <div class="product-image">
@@ -101,41 +101,38 @@
                         </div>
                         <h3 class="product-name">Rose Blossom</h3>
                     </a>
-                    <p class="product-notes">Note: Trandafir roșu, Vanilie, Bujor</p>
+                    <p class="product-notes">Trandafir roșu • Vanilie • Bujor</p>
                     <p class="product-price">2250 lei</p>
                     <button class="add-to-cart-btn">Adaugă în coș</button>
                 </div>
 
             </div>
         </section>
+
         <section class="about" id="despre-noi">
             <div class="about-container">
                 <div class="about-text">
                     <h2 class="section-title">Povestea Mystic Notes</h2>
-                    <p>Născut din pasiunea pentru arta olfactivă, Mystic Notes nu este doar un magazin de parfumuri, ci
-                        o destinație pentru cei care caută o semnătură personală. Credem că un parfum este mai mult
-                        decât o aromă; este o amintire, o emoție și o extensie a personalității tale.</p>
-                    <p>Fiecare esență din colecția noastră este selectată riguros, punând accent pe ingrediente naturale
-                        și tehnici de distilare artizanale.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">10+</span>
-                            <span class="stat-label">Ani de Plăcere</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Esențe Rare</span>
-                        </div>
-                    </div>
+                    <p>
+                        Mystic Notes nu este doar un magazin de parfumuri,
+                        ci o experiență. Fiecare aromă spune o poveste.
+                    </p>
                 </div>
+
                 <div class="about-image">
                     <img src="imp/about.jpg" alt="Artizanat Parfumuri">
                 </div>
             </div>
         </section>
+
+        <!-- EXEMPLU ELEMENT -->
+        <p id="pret">Se încarcă...</p>
+
     </main>
+
+    <!-- SCRIPTURI LA FINAL -->
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+
 </body>
 </html>
-<p id="pret">Se încarcă...</p>
-<script src="script.js">
-</script>
