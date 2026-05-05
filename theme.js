@@ -29,3 +29,32 @@ function updateIcon(theme) {
     const btn = document.getElementById("theme-toggle");
     btn.textContent = theme === "dark" ? "☀️" : "🌙";
 }
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("theme-toggle");
+
+  if (!btn) return;
+
+  const saved = localStorage.getItem("theme");
+
+  if (saved) {
+    document.documentElement.setAttribute("data-theme", saved);
+    btn.textContent = saved === "dark" ? "☀️" : "🌙";
+  }
+
+  btn.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+
+    if (current === "dark") {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      btn.textContent = "🌙";
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      btn.textContent = "☀️";
+    }
+  });
+});
