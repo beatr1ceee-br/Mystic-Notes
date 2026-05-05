@@ -1,19 +1,23 @@
 /* Variabile globale - Tema Light (Implicită) */
 :root {
-    --bg-color: #faf9f6; /* Alb cald, perlat */
+    --bg-color: #faf9f6;
+    /* Alb cald, perlat */
     --header-bg: #ffffff;
     --text-color: #2c2c2c;
-    --accent-color: #d4af37; /* Auriu rafinat */
+    --accent-color: #d4af37;
+    /* Auriu rafinat */
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     --border-color: #eaeaea;
 }
 
 /* Suprascrierea variabilelor pentru Tema Dark */
 body.dark-mode {
-    --bg-color: #0f0f11; /* Negru intens, misterios */
+    --bg-color: #0f0f11;
+    /* Negru intens, misterios */
     --header-bg: #1a1a1c;
     --text-color: #f0f0f0;
-    --accent-color: #cda434; /* Auriu ajustat pentru contrast */
+    --accent-color: #cda434;
+    /* Auriu ajustat pentru contrast */
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     --border-color: #2a2a2c;
 }
@@ -48,7 +52,8 @@ body {
     font-weight: 700;
     color: var(--accent-color);
     letter-spacing: 1.5px;
-    font-family: 'Georgia', serif; /* Font cu serife pentru eleganță */
+    font-family: 'Georgia', serif;
+    /* Font cu serife pentru eleganță */
     cursor: pointer;
 }
 
@@ -153,7 +158,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 0 10%;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(imp/aroma.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(imp/aroma.jpg);
     background-size: cover;
     background-position: center;
     color: white;
@@ -234,7 +239,8 @@ body {
 .product-image img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* 🔥 schimbă asta */
+    object-fit: contain;
+    /* 🔥 schimbă asta */
 }
 
 /* Text produs */
@@ -348,6 +354,7 @@ html {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .about-container {
         flex-direction: column;
     }
@@ -357,15 +364,20 @@ html {
     .product-grid {
         grid-template-columns: 1fr;
     }
+
     .navbar {
-        display: none; /* Ideal ar fi un meniu burger aici ulterior */
+        display: none;
+        /* Ideal ar fi un meniu burger aici ulterior */
     }
 }
 
 .product-link {
-    text-decoration: none; /* Scoate linia de sub text */
-    color: inherit;        /* Păstrează culoarea originală a textului */
-    display: block;        /* Face tot spațiul link-ului clicabil */
+    text-decoration: none;
+    /* Scoate linia de sub text */
+    color: inherit;
+    /* Păstrează culoarea originală a textului */
+    display: block;
+    /* Face tot spațiul link-ului clicabil */
 }
 
 .product-image img {
@@ -373,7 +385,8 @@ html {
 }
 
 .product-link:hover .product-image img {
-    transform: scale(1.05); /* Efect vizual plăcut la hover pe link */
+    transform: scale(1.05);
+    /* Efect vizual plăcut la hover pe link */
 }
 
 .product-card img {
@@ -386,6 +399,7 @@ html {
 .product-card:hover img {
     transform: scale(1.05);
 }
+
 #currency {
     margin-left: 10px;
     padding: 5px;
@@ -405,14 +419,14 @@ html {
 }
 
 button {
-            background: #c9a27c;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+    background: #c9a27c;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
 .right-side {
     margin-left: auto;
@@ -430,4 +444,42 @@ button {
 .nav-links a {
     text-decoration: none;
     color: inherit;
+}
+
+.footer-simple {
+    position: relative;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    background-color: var(--header-bg);
+    overflow: hidden;
+}
+
+/* Linia aurie animată */
+.footer-simple::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            #d4af37,
+            #fff3b0,
+            #d4af37,
+            transparent);
+    animation: goldLine 4s linear infinite;
+}
+
+/* Animație */
+@keyframes goldLine {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(50%);
+    }
 }
