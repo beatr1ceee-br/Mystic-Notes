@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalizează parfumul</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme.js">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css">
+</head>
+
+<style>
+  :root {
+    --bg: #f9f6f1;
+    --card: #fff;
+    --text: #1c1710;
+    --muted: #7a6a48;
+    --border: #e2d9c8;
+    --gold: #c9a84c;
+    --soft: #f4ede2;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0d0c0a;
+    --card: #14120f;
+    --text: #ead9b0;
+    --muted: #8a7a58;
+    --border: #2a241a;
+    --gold: #c9a84c;
+    --soft: #15110c;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  body {
+    margin: 0;
+    font-family: Raleway;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .theme {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .title {
+    font-family: "Playfair Display";
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+    background: var(--soft);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+  }
+
+  .card.active {
+    border: 1px solid var(--gold);
+    background: rgba(201, 168, 76, 0.15);
+  }
+
+  .card h4 {
+    margin: 0;
+    font-family: "Playfair Display";
+  }
+
+  .card p {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .sizes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .size {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .size.selected {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .summary {
+    position: sticky;
+    top: 80px;
+  }
+
+  .box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .line {
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: var(--muted);
+  }
+
+  .value {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background: var(--gold);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  @media(max-width:900px) {
+    .container {
+      grid-template-columns: 1fr
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <a href="index.html" class="logo">Mystic Notes</a>
+
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="collection.html">Catalog Parfumuri</a></li>
+        <li><a href="index.html#despre-noi">Despre Noi</a></li>
+        <li><a href="Contact us.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-container">
+        <input type="text" placeholder="Caută notele preferate..." class="search-input">
+        <button class="search-btn">
+          <i class="fi fi-br-search"></i>
+        </button>
+      </div>
+
+      <button id="theme-toggle" class="theme-btn">🌙</button>
+      <script src="theme.js"></script>
+    </div>
+  </header>
+  <script src="script.js"></script>
+
+  <section class="catalog">
+    <h2 class="section-title">Personalizează Parfumul Tău</h2>
+    <p style="margin-bottom: 1rem; color: gray;">
+      Crează-ți aroma unică care te definește.
+    </p>
+
+
+    <div class="container">
+
+      <!-- BUILDER -->
+      <div>
+
+        <div class="panel">
+          <div class="title">Note Dulci</div>
+          <div class="grid" id="sweet"></div>
+        </div>
+
+        <div class="panel">
+          <div class="title">Note Florale</div>
+          <div class="grid" id="floral"></div>
+        </div>
+
+        <div class="panel">
+          <div class="title">Note Fresh</div>
+          <div class="grid" id="fresh"></div>
+        </div>
+
+        <div class="panel">
+          <div class="title">Note Lemnoase</div>
+          <div class="grid" id="woody"></div>
+        </div>
+
+        <div class="panel">
+          <div class="title">Gramaj</div>
+          <div class="sizes">
+            <div class="size" onclick="selectSize(this,'30ml')">30ml</div>
+            <div class="size" onclick="selectSize(this,'50ml')">50ml</div>
+            <div class="size" onclick="selectSize(this,'100ml')">100ml</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="summary">
+        <div class="box">
+          <div class="title">Rezumat parfum</div>
+
+          <div class="line">Dulci: <span id="sSweet" class="value">—</span></div>
+          <div class="line">Florale: <span id="sFloral" class="value">—</span></div>
+          <div class="line">Fresh: <span id="sFresh" class="value">—</span></div>
+          <div class="line">Lemn: <span id="sWood" class="value">—</span></div>
+          <div class="line">Gramaj: <span id="sSize" class="value">—</span></div>
+
+          <button onclick="add()">Adaugă în coș</button>
+          <button class="secondary" onclick="reset()">Reset</button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+
+      const data = {
+        sweet: [
+          { n: "Vanilie Bourbon", d: "Aromă caldă, cremoasă, cu tonuri bogate de desert fin și rafinament oriental." },
+          { n: "Caramel sărat", d: "Dulceață intensă echilibrată cu sare subtilă — modern și gurmand." },
+          { n: "Miere de salcâm", d: "Naturală, florală, catifelată și luminoasă." },
+          { n: "Ciocolată neagră", d: "Profundă, intensă, ușor amăruie și foarte elegantă." },
+          { n: "Pralină", d: "Nucă prăjită și caramel fin — lux gourmand." },
+          { n: "Zahăr brun", d: "Dulce cald, nostalgic și simplu rafinat." },
+          { n: "Toffee untos", d: "Cremozitate dulce intensă cu textură luxoasă." },
+          { n: "Cacao premium", d: "Aromă uscată, profundă, aproape misterioasă." }
+        ],
+
+        floral: [
+          { n: "Trandafir Damasc", d: "Floral regal, romantic, profund și elegant." },
+          { n: "Iasomie Sambac", d: "Senzuală, exotică și foarte intensă." },
+          { n: "Lavandă Provence", d: "Calm, curat, relaxant și echilibrat." },
+          { n: "Peonie roz", d: "Floral modern, feminin și ușor dulce." },
+          { n: "Magnolie albă", d: "Puritate florală luminoasă și rafinată." },
+          { n: "Lăcrămioare", d: "Fresh floral verde, aerat și delicat." },
+          { n: "Ylang-Ylang", d: "Exotic, cremos și ușor tropical." },
+          { n: "Floare de portocal", d: "Citric-floral elegant și sofisticat." }
+        ],
+
+        fresh: [
+          { n: "Bergamot Calabria", d: "Citric elegant, baza parfumurilor de lux." },
+          { n: "Lămâie siciliană", d: "Proaspătă, vibrantă și energizantă." },
+          { n: "Mentă arctică", d: "Rece, intensă și ultra-refreshing." },
+          { n: "Ocean Breeze", d: "Note marine curate și aer sărat." },
+          { n: "Măr verde crocant", d: "Fresh dulce-acrișor modern." },
+          { n: "Ceai verde japonez", d: "Zen, minimalist și foarte elegant." },
+          { n: "Grapefruit roz", d: "Amărui-dulce energic și sofisticat." },
+          { n: "Castravete fresh", d: "Acuatic, curat și ultra-modern." }
+        ],
+
+        woody: [
+          { n: "Santal Indian", d: "Cremozitate lemnoasă luxoasă și senzuală." },
+          { n: "Cedru Atlas", d: "Lemn uscat elegant și masculin rafinat." },
+          { n: "Oud Cambodgian", d: "Misterios, intens și extrem de luxos." },
+          { n: "Vetiver Haiti", d: "Pământos, fumuriu și sofisticat." },
+          { n: "Patchouli negru", d: "Dark, ușor dulce și iconic." },
+          { n: "Ambră gri", d: "Animalic, cald și persistent." },
+          { n: "Lemn de mesteacăn", d: "Ușor afumat și modern elegant." },
+          { n: "Pin sălbatic", d: "Verde natural, fresh lemnos." }
+        ]
+      };
+
+      let selected = {
+        sweet: [],
+        floral: [],
+        fresh: [],
+        woody: []
+      };
+
+      let size = "";
+
+      function load() {
+        for (let k in data) {
+          const box = document.getElementById(k);
+
+          data[k].forEach((x, i) => {
+            const c = document.createElement("div");
+            c.className = "card";
+            c.innerHTML = `<h4>${x.n}</h4><p>${x.d}</p>`;
+
+            c.onclick = () => {
+              if (selected[k].includes(i)) {
+                selected[k] = selected[k].filter(e => e !== i);
+                c.classList.remove("active");
+              } else {
+                selected[k].push(i);
+                c.classList.add("active");
+              }
+              update();
+            };
+
+            box.appendChild(c);
+          });
+        }
+      }
+
+      function selectSize(el, s) {
+        document.querySelectorAll(".size").forEach(x => x.classList.remove("selected"));
+        el.classList.add("selected");
+        size = s;
+        update();
+      }
+
+      function update() {
+        document.getElementById("sSweet").innerText =
+          selected.sweet.map(i => data.sweet[i].n).join(", ") || "—";
+
+        document.getElementById("sFloral").innerText =
+          selected.floral.map(i => data.floral[i].n).join(", ") || "—";
+
+        document.getElementById("sFresh").innerText =
+          selected.fresh.map(i => data.fresh[i].n).join(", ") || "—";
+
+        document.getElementById("sWood").innerText =
+          selected.woody.map(i => data.woody[i].n).join(", ") || "—";
+
+        document.getElementById("sSize").innerText = size || "—";
+      }
+
+      function add() {
+        if (!size) return alert("Alege gramajul!");
+
+        localStorage.setItem("parfum", JSON.stringify({ selected, size }));
+        alert("Parfum salvat ✔");
+      }
+
+      function reset() {
+        selected = { sweet: [], floral: [], fresh: [], woody: [] };
+        size = "";
+        document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+        document.querySelectorAll(".size").forEach(c => c.classList.remove("selected"));
+        update();
+      }
+
+      function toggleTheme() {
+        document.documentElement.dataset.theme =
+          document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      }
+
+      load();
+    </script>
+
+</body>
+
+</html>
